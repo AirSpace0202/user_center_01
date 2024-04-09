@@ -6,6 +6,9 @@ spring:
     username: root
     password: zhang2004
     url: jdbc:mysql://localhost:3306/user_center_01
+  session:
+    timeout: 86400                                # session 设置失效时间
+
 
 server:
   port: 8080
@@ -13,3 +16,8 @@ server:
 mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
+  global-config:
+    db-config:
+      logic-delete-field: isDelete                # 定义全局逻辑删除的字段名
+      logic-delete-value: 1                    # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0                 # 逻辑未删除值(默认为 0)
