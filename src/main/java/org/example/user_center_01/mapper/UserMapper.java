@@ -9,7 +9,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 * @createDate 2024-04-08 20:54:08
 * @Entity generator.domain.User
 */
-public interface UserMapper extends BaseMapper<User> {                  // 继承的 BaseMapper 接口中有一些实现数据库操作的方法（CURD等）
+public interface UserMapper extends BaseMapper<User> {            // 继承的 BaseMapper 接口中有一些实现数据库操作的方法（CURD等）
 
 }
 

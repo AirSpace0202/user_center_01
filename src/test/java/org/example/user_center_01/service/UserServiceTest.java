@@ -70,7 +70,7 @@ public class UserServiceTest {
         Assertions.assertEquals(-1, result);
 
         // 正确，希望能够插入数据库
-        userAccount = "Jixuan";
+        userAccount = "JixuanZhang";
         result = userService.userRegister(userAccount, userPassword, checkPassword);
         Assertions.assertEquals(-1, result);
 

@@ -7,15 +7,15 @@ spring:
     password: zhang2004
     url: jdbc:mysql://localhost:3306/user_center_01
   session:
-    timeout: 86400                                # session 设置失效时间
+    timeout: 86400                                # session 设置失效时间为一天（86400秒）
 
 
 server:
-  port: 8080
+  port: 8081
 
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: false           # 关闭数据库中的的字段自动将下划线转成驼峰
   global-config:
     db-config:
       logic-delete-field: isDelete                # 定义全局逻辑删除的字段名

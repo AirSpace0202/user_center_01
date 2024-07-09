@@ -42,7 +42,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>          // �
         if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
             return -1;
         }
-        if (userAccount.length() < 4) {
+        if (userAccount.length() < 4) {                 // 长度要大于4位且密码要大于8位
             return -1;
         }
         if (userPassword.length() < 8 || checkPassword.length() < 8) {
@@ -108,7 +108,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>          // �
         // 2、加密
         String newPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
 
-        // 账户是否存在
+        // 验证账户是否存在
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();     // 用于构建 SQL 查询的 WHERE 条件
         queryWrapper.eq("userAccount", userAccount);        // 账号和密码都要与数据库中的相匹配
         queryWrapper.eq("userPassword", newPassword);
@@ -120,8 +120,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>          // �
         }
 
         // 3、用户脱敏，返回脱敏后的用户信息
-
         User safetyUser = getSafetyUser(user);
+
         // 4、记录用户的登录态
         request.getSession().setAttribute(USER_LOGIN_STATE, safetyUser);        // 后端拿到前端传来的 cookie，找到对应的 session，后端取出 session 并设置变量
 
@@ -148,6 +148,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>          // �
         safetyUser.setUserRole(originUser.getUserRole());
 
         return safetyUser;
+    }
+
+    /**
+     * 用户注销
+     * @param request 前端传来的请求
+     */
+    @Override
+    public int userLogout(HttpServletRequest request) {
+        request.getSession().removeAttribute(USER_LOGIN_STATE);         // 移除用户登录态
+        return 1;
     }
 }
 

@@ -72,7 +72,7 @@ public class User implements Serializable {
     private Date updateTime;
 
     /**
-     * 是否删除
+     * 是否删除，加上 TableLogic 注解表示为逻辑删除字段
      */
     @TableLogic
     private Integer isDelete;
